@@ -16,7 +16,6 @@ Here's all the setup you need to do to run this on the Quest 2 (probably Quest 3
 ## Setup
 
 ### On Desktop
-- Download Meta app for desktop: https://www.meta.com/help/quest/articles/headsets-and-accessories/oculus-rift-s/install-app-for-link/
 - Download SteamVR through Steam
 
 ### On Phone
@@ -30,14 +29,10 @@ Here's all the setup you need to do to run this on the Quest 2 (probably Quest 3
 - Open SteamVR
 - Set SteamVR as default OpenXR runtime
   - SteamVR -> Settings -> OpenXR
-- Open Meta/Oculus app
-- Allow `Unknown sources`
-    - Settings -> General tab -> Unknown sources
-    - DO NOT SET OpenXR Runtime. We want SteamVR to be the runtime
 
 ### On Oculus
-- Settings -> System -> Quest Link
-    - Enable, turn on, connect to your computer
+- Download SteamLink (if you don't have it already)
+- Open SteamLink and connect to computer
 
 ### On Desktop
 - Restart SteamVR if headset isn’t connected
@@ -47,10 +42,7 @@ Here's all the setup you need to do to run this on the Quest 2 (probably Quest 3
 <br>
 
 ## Testing Flow
-
-- Open Meta app on PC
 - Put on headset
-- Start QuestLink
 - Start SteamVR through this menu
 - Once inside home, start game in Godot
 
