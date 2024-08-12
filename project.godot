@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Guns For Hands"
+config/name="Godot VR Template"
 run/main_scene="res://World.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"

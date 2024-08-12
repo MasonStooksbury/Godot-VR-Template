@@ -80,5 +80,3 @@ shape = SubResource("BoxShape3D_cmm1y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.630798, -2.46059)
 mesh = SubResource("BoxMesh_sp86w")
 skeleton = NodePath("../..")
-
-[editable path="Player"]

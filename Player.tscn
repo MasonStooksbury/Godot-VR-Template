@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdvl2u188obmm"]
+[gd_scene load_steps=10 format=3 uid="uid://bdvl2u188obmm"]
 
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="1_hk7k1"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="2_jot1b"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_5d44b"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_47ii4"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_v01tw"]
-[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_sclqa"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_q3ndh"]
 [ext_resource type="PackedScene" uid="uid://p35crjjk3ot3" path="res://BeltSnapZone.tscn" id="8_1vc6q"]
 
@@ -41,6 +40,9 @@ mesh = SubResource("BoxMesh_5k7kc")
 grab_distance = 1.0
 ranged_angle = 3.0
 
+[node name="MovementDirect" parent="XROrigin3D/RightHand" instance=ExtResource("4_v01tw")]
+strafe = true
+
 [node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
 tracker = &"left_hand"
@@ -51,10 +53,6 @@ visible = false
 mesh = SubResource("BoxMesh_5tyfp")
 
 [node name="LeftHand" parent="XROrigin3D/LeftHand" instance=ExtResource("3_5d44b")]
-
-[node name="MovementDirect" parent="XROrigin3D/LeftHand" instance=ExtResource("4_v01tw")]
-
-[node name="MovementTurn" parent="XROrigin3D/LeftHand" instance=ExtResource("5_sclqa")]
 
 [node name="FunctionPickup" parent="XROrigin3D/LeftHand" instance=ExtResource("3_47ii4")]
 grab_distance = 1.0
