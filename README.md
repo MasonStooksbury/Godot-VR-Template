@@ -3,7 +3,7 @@ The purpose of this project is to have a template with a ton of boilerplate code
 
 <br><br><br>
 
-## Notes
+# Notes
  - The project is setup to work with LFS and I have included the necessary `.gitattributes` file for you. It includes several common things that may change often that you would want in LFS, but you can always add more.
 
 <br><br><br>
@@ -56,6 +56,7 @@ Here's all the setup you need to do to run this on the Quest 2 (probably Quest 3
 
 
 
+<br><br><br>
 
 
 
