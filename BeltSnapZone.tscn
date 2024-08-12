@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://p35crjjk3ot3"]
+
+[ext_resource type="PackedScene" uid="uid://ce7vysyvondf8" path="res://addons/godot-xr-tools/objects/snap_zone.tscn" id="1_xno0f"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lfv1f"]
+resource_local_to_scene = true
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycujx"]
+transparency = 1
+cull_mode = 1
+albedo_color = Color(1, 0.00999999, 0.00999999, 0.329412)
+
+[sub_resource type="SphereMesh" id="SphereMesh_es5sv"]
+material = SubResource("StandardMaterial3D_ycujx")
+radius = 0.02
+height = 0.05
+
+[node name="BeltSnapZone" instance=ExtResource("1_xno0f")]
+grab_distance = 0.1
+snap_require = "HandGun"
+
+[node name="CollisionShape3D" parent="." index="0"]
+shape = SubResource("SphereShape3D_lfv1f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+mesh = SubResource("SphereMesh_es5sv")

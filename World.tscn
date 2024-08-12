@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://44kdu625axy0"]
+
+[ext_resource type="Script" path="res://World.gd" id="1_i6ll3"]
+[ext_resource type="PackedScene" uid="uid://bdvl2u188obmm" path="res://Player.tscn" id="2_a47qa"]
+[ext_resource type="PackedScene" uid="uid://di0aa05bjmcxk" path="res://Cube.tscn" id="3_nljrm"]
+[ext_resource type="PackedScene" uid="uid://b5qhl6yam2k7f" path="res://Gun.tscn" id="4_ycdie"]
+[ext_resource type="Texture2D" uid="uid://br6aw7213sgr8" path="res://Assets/FloorTexture.png" id="5_1jby3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_by3sb"]
+sky_top_color = Color(0.0768585, 0.402459, 0.855469, 1)
+sky_horizon_color = Color(0.576832, 0.641258, 0.734798, 1)
+ground_bottom_color = Color(0.230469, 0.162572, 0.083725, 1)
+ground_horizon_color = Color(0.576832, 0.641258, 0.734798, 1)
+
+[sub_resource type="Sky" id="Sky_qedji"]
+sky_material = SubResource("ProceduralSkyMaterial_by3sb")
+
+[sub_resource type="Environment" id="Environment_j6l0s"]
+background_mode = 2
+sky = SubResource("Sky_qedji")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyto6"]
+albedo_texture = ExtResource("5_1jby3")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m8g7d"]
+material = SubResource("StandardMaterial3D_kyto6")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_68808"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cmm1y"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dtbk"]
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("5_1jby3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_sp86w"]
+material = SubResource("StandardMaterial3D_3dtbk")
+size = Vector3(2, 1, 1)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_i6ll3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j6l0s")
+
+[node name="Player" parent="." instance=ExtResource("2_a47qa")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 33, 0)
+light_energy = 7.949
+light_angular_distance = 22.73
+
+[node name="Cube" parent="." instance=ExtResource("3_nljrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225769, 1.49188, -2.53683)
+
+[node name="Gun" parent="." instance=ExtResource("4_ycdie")]
+transform = Transform3D(0.730568, -0.68284, 0, 0.68284, 0.730568, 0, 0, 0, 1, -0.28279, 1.48252, -2.52145)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_m8g7d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_68808")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00175297, 0.258503, -2.46059)
+shape = SubResource("BoxShape3D_cmm1y")
+
+[node name="Table" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.630798, -2.46059)
+mesh = SubResource("BoxMesh_sp86w")
+skeleton = NodePath("../..")
+
+[editable path="Player"]

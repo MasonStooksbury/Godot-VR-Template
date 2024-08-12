@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdvl2u188obmm"]
+
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="1_hk7k1"]
+[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="2_jot1b"]
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="3_5d44b"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_47ii4"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_v01tw"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_sclqa"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="6_q3ndh"]
+[ext_resource type="PackedScene" uid="uid://p35crjjk3ot3" path="res://BeltSnapZone.tscn" id="8_1vc6q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5k7kc"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5tyfp"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Player" type="Node3D"]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63112, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+current = true
+
+[node name="RightHand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+visible = false
+mesh = SubResource("BoxMesh_5k7kc")
+
+[node name="RightHand" parent="XROrigin3D/RightHand" instance=ExtResource("1_hk7k1")]
+
+[node name="FunctionTeleport" parent="XROrigin3D/RightHand" instance=ExtResource("2_jot1b")]
+
+[node name="FunctionPickup" parent="XROrigin3D/RightHand" instance=ExtResource("3_47ii4")]
+grab_distance = 1.0
+ranged_angle = 3.0
+
+[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftHand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80192, 0, -3.30677)
+visible = false
+mesh = SubResource("BoxMesh_5tyfp")
+
+[node name="LeftHand" parent="XROrigin3D/LeftHand" instance=ExtResource("3_5d44b")]
+
+[node name="MovementDirect" parent="XROrigin3D/LeftHand" instance=ExtResource("4_v01tw")]
+
+[node name="MovementTurn" parent="XROrigin3D/LeftHand" instance=ExtResource("5_sclqa")]
+
+[node name="FunctionPickup" parent="XROrigin3D/LeftHand" instance=ExtResource("3_47ii4")]
+grab_distance = 1.0
+ranged_angle = 3.0
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("6_q3ndh")]
+
+[node name="GunHandRight" type="XRController3D" parent="XROrigin3D"]
+visible = false
+tracker = &"right_hand"
+
+[node name="FunctionTeleport" parent="XROrigin3D/GunHandRight" instance=ExtResource("2_jot1b")]
+
+[node name="BeltSnapZoneRight" parent="XROrigin3D" instance=ExtResource("8_1vc6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112817, 0.727671, -0.0682496)
+
+[node name="BeltSnapZoneLeft" parent="XROrigin3D" instance=ExtResource("8_1vc6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.113, 0.729, -0.068)
